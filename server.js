@@ -1,6 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const mongoose = require("mongoose"); // to deal with MongoDB
+const bodyParser = require("body-parser"); //to get the response from json with res.body
+const passport = require("passport"); //Model for authentications have different strategies ( local - google - jsonWebToken )
 
 const users = require("./routers/api/users");
 const profile = require("./routers/api/profile");
@@ -23,7 +24,11 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello!"));
+//Passport middleware
+app.use(passport.initialize());
+
+//Passport config
+require("./config/passport")(passport);
 
 //Use routes
 app.use("/api/users", users);
