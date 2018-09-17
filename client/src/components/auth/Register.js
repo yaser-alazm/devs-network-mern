@@ -20,6 +20,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticate) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   //Lifecycle methde runs after the component receives any props
   componentWillReceiveProps(nextProps) {
     //Setting errors props comming from redux into the errors state of the component
