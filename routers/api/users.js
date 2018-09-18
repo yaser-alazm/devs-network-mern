@@ -25,28 +25,28 @@ router.get("/test", (req, res) => res.json({ msg: "User Works.." }));
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
-  //Check validation
+  // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
-  //Check if the email already exists
+  // Check if the email is already taken
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       errors.email = "Email already exists";
       return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
-        s: "200", //Size
-        r: "pg", //Rating
-        d: "mm" //Default image (if there is no avatar)
+        s: "200", // Size
+        r: "pg", // Rating
+        d: "mm" // Default
       });
 
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
-        avatar
+        avatar,
+        password: req.body.password
       });
 
       bcrypt.genSalt(10, (err, salt) => {
