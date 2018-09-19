@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "A Social Network For Developer Using MEAN Stack",
   "main": "server.js",
+  "proxy": {
+    "/api/profile": {
+      "target": "https://localhost:5000",
+      "secure": false
+    }
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server",
