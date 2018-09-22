@@ -27,7 +27,6 @@ class ProfileGithub extends Component {
           this.setState({
             repos: data
           });
-          console.log(data);
         }
       })
       .catch(err => console.log(err));
