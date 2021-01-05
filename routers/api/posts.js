@@ -18,7 +18,7 @@ const validatePostInput = require("../../validation/post");
 //@route    GET api/posts/test
 //@desc     Tests posts route
 //@access   Public
-router.get("/test", (req, res) => res.json({ msg: "Post Works.." }));
+// router.get("/test", (req, res) => res.json({ msg: "Post Works.." }));
 
 //@route    POST  api/posts
 //@desc     Create a post for a user
